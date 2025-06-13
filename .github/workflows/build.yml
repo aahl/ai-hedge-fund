@@ -47,11 +47,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Change directory
+        run: |
+          pwd
+          cd docker
+          pwd
+
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v6
         with:
-          context: ./docker
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
