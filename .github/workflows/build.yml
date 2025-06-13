@@ -19,6 +19,9 @@ jobs:
           - linux/amd64
           - linux/arm64
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Prepare
         run: |
           platform=${{ matrix.platform }}
@@ -48,7 +51,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
-          context: "{{defaultContext}}:docker"
+          context: docker
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
