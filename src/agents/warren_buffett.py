@@ -5,7 +5,7 @@ from pydantic import BaseModel
 import json
 from typing_extensions import Literal
 from src.tools.api import get_financial_metrics, get_market_cap, search_line_items
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 from src.utils.progress import progress
 
 
@@ -788,7 +788,7 @@ def generate_buffett_output(
                 - 10-29%: Poor business or significantly overvalued
 
                 Remember: I'd rather own a wonderful business at a fair price than a fair business at a wonderful price. And when in doubt, the answer is usually "no" - there's no penalty for missed opportunities, only for permanent capital loss.
-                """,
+                """ + APPEND_PROMPT,
             ),
             (
                 "human",

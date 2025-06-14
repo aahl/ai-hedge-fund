@@ -5,7 +5,7 @@ from pydantic import BaseModel
 import json
 from typing_extensions import Literal
 from src.tools.api import get_financial_metrics, get_market_cap, search_line_items
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 from src.utils.progress import progress
 
 class RakeshJhunjhunwalaSignal(BaseModel):
@@ -669,7 +669,7 @@ def generate_jhunjhunwala_output(
                 For example, if bearish: "The deteriorating margins and high debt levels concern me - this doesn't fit the profile of companies that build lasting value..."
 
                 Follow these guidelines strictly.
-                """,
+                """ + APPEND_PROMPT,
             ),
             (
                 "human",

@@ -7,7 +7,7 @@ from pydantic import BaseModel
 import json
 from typing_extensions import Literal
 from src.utils.progress import progress
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 
 
 class BillAckmanSignal(BaseModel):
@@ -425,7 +425,7 @@ def generate_ackman_output(
             - Use a confident, analytic, and sometimes confrontational tone when discussing weaknesses or opportunities.
 
             Return your final recommendation (signal: bullish, neutral, or bearish) with a 0-100 confidence and a thorough reasoning section.
-            """
+            """ + APPEND_PROMPT
         ),
         (
             "human",

@@ -13,7 +13,7 @@ from src.tools.api import (
     get_market_cap,
     search_line_items,
 )
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 from src.utils.progress import progress
 
 
@@ -379,7 +379,8 @@ def generate_damodaran_output(
                   ◦ Connect that story to key numerical drivers: revenue growth, margins, reinvestment, risk
                   ◦ Conclude with value: your FCFF DCF estimate, margin of safety, and relative valuation sanity checks
                   ◦ Highlight major uncertainties and how they affect value
-                Return ONLY the JSON specified below.""",
+                Return ONLY the JSON specified below.
+                """ + APPEND_PROMPT,
             ),
             (
                 "human",

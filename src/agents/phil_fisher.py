@@ -12,7 +12,7 @@ from pydantic import BaseModel
 import json
 from typing_extensions import Literal
 from src.utils.progress import progress
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 import statistics
 
 
@@ -562,7 +562,7 @@ def generate_fisher_output(
                 - "signal": "bullish" or "bearish" or "neutral"
                 - "confidence": a float between 0 and 100
                 - "reasoning": a detailed explanation
-              """,
+              """ + APPEND_PROMPT,
             ),
             (
               "human",

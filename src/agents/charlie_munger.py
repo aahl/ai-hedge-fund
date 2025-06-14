@@ -6,7 +6,7 @@ from pydantic import BaseModel
 import json
 from typing_extensions import Literal
 from src.utils.progress import progress
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 
 class CharlieMungerSignal(BaseModel):
     signal: Literal["bullish", "bearish", "neutral"]
@@ -716,7 +716,7 @@ def generate_munger_output(
             
             For example, if bullish: "The high ROIC of 22% demonstrates the company's moat. When applying basic microeconomics, we can see that competitors would struggle to..."
             For example, if bearish: "I see this business making a classic mistake in capital allocation. As I've often said about [relevant Mungerism], this company appears to be..."
-            """
+            """ + APPEND_PROMPT
         ),
         (
             "human",

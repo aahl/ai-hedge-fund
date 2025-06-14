@@ -6,7 +6,7 @@ from src.graph.state import AgentState, show_agent_reasoning
 from pydantic import BaseModel, Field
 from typing_extensions import Literal
 from src.utils.progress import progress
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 
 
 class PortfolioDecision(BaseModel):
@@ -133,7 +133,7 @@ def generate_trading_decision(
               - current_prices: current prices for each ticker
               - margin_requirement: current margin requirement for short positions (e.g., 0.5 means 50%)
               - total_margin_used: total margin currently in use
-              """,
+              """ + APPEND_PROMPT,
             ),
             (
                 "human",

@@ -13,7 +13,7 @@ from pydantic import BaseModel
 import json
 from typing_extensions import Literal
 from src.utils.progress import progress
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 
 
 class PeterLynchSignal(BaseModel):
@@ -472,7 +472,7 @@ def generate_lynch_output(
                   "confidence": 0 to 100,
                   "reasoning": "string"
                 }}
-                """,
+                """ + APPEND_PROMPT,
             ),
             (
                 "human",

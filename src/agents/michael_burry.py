@@ -16,7 +16,7 @@ from src.tools.api import (
     get_market_cap,
     search_line_items,
 )
-from src.utils.llm import call_llm
+from src.utils.llm import call_llm, APPEND_PROMPT
 from src.utils.progress import progress
 
 __all__ = [
@@ -351,7 +351,7 @@ def _generate_burry_output(
                 
                 For example, if bullish: "FCF yield 12.8%. EV/EBIT 6.2. Debt-to-equity 0.4. Net insider buying 25k shares. Market missing value due to overreaction to recent litigation. Strong buy."
                 For example, if bearish: "FCF yield only 2.1%. Debt-to-equity concerning at 2.3. Management diluting shareholders. Pass."
-                """,
+                """ + APPEND_PROMPT,
             ),
             (
                 "human",

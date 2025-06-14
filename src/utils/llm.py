@@ -1,11 +1,13 @@
 """Helper functions for LLM"""
 
+import os
 import json
 from pydantic import BaseModel
 from src.llm.models import get_model, get_model_info
 from src.utils.progress import progress
 from src.graph.state import AgentState
 
+APPEND_PROMPT = os.environ.get("APPEND_PROMPT", "")
 
 def call_llm(
     prompt: any,
